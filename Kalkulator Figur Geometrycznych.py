@@ -35,19 +35,50 @@ class Triangle(Shape):
         self.c = c
 
     def area(self):
-        
+        # Using Heron's formula to calculate the area of the triangle
         s = (self.a + self.b + self.c) / 2
         return math.sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
 
     def perimeter(self):
         return self.a + self.b + self.c
 
-# Example usage:
-circle = Circle(5)
-print(f"Circle: Area = {circle.area()}, Perimeter = {circle.perimeter()}")
+def main():
+    while True:
+        print("\nWybierz figurę geometryczną:")
+        print("1. Koło")
+        print("2. Prostokąt")
+        print("3. Trójkąt")
+        print("4. Wyjdź")
 
-rectangle = Rectangle(4, 7)
-print(f"Rectangle: Area = {rectangle.area()}, Perimeter = {rectangle.perimeter()}")
+        choice = input("Wprowadź numer opcji: ")
 
-triangle = Triangle(3, 4, 5)
-print(f"Triangle: Area = {triangle.area()}, Perimeter = {triangle.perimeter()}")
+        if choice == '1':
+            radius = float(input("Podaj promień koła: "))
+            circle = Circle(radius)
+            print(f"Koło: Pole = {circle.area()}, Obwód = {circle.perimeter()}")
+
+        elif choice == '2':
+            width = float(input("Podaj szerokość prostokąta: "))
+            height = float(input("Podaj wysokość prostokąta: "))
+            rectangle = Rectangle(width, height)
+            print(f"Prostokąt: Pole = {rectangle.area()}, Obwód = {rectangle.perimeter()}")
+
+        elif choice == '3':
+            a = float(input("Podaj długość pierwszego boku trójkąta: "))
+            b = float(input("Podaj długość drugiego boku trójkąta: "))
+            c = float(input("Podaj długość trzeciego boku trójkąta: "))
+            if a + b > c and a + c > b and b + c > a:
+                triangle = Triangle(a, b, c)
+                print(f"Trójkąt: Pole = {triangle.area()}, Obwód = {triangle.perimeter()}")
+            else:
+                print("Niepoprawne długości boków trójkąta. Spróbuj ponownie.")
+
+        elif choice == '4':
+            print("Koniec programu.")
+            break
+
+        else:
+            print("Niepoprawny wybór. Spróbuj ponownie.")
+
+if __name__ == "__main__":
+    main()
